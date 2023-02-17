@@ -1,0 +1,19 @@
+@import '/src/style/variables.scss';
+
+.app__header {
+    font-weight: 700;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+    & span {
+        color: $main-color;
+    }
+
+    & .app__header-list {
+        display: flex;
+        & :not(:last-child) {
+            margin-right: 8px;
+        }
+    }
+}

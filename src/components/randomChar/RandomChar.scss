@@ -1,0 +1,80 @@
+@import '/src//style/variables.scss';
+
+img {
+    width: 180px;
+    height: 180px;
+}
+.randomchar {
+    & .randomchar-items {
+        display: flex;
+        & .randomchar-item {
+            padding: 35px;
+            width: 550px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+            height: 250px;
+            display: flex;  
+            & .randomchar-img {
+                max-width: 180px;
+                max-height: 180px;
+                border: 1px solid greenyellow;
+            }
+
+            & .randomchar-content { 
+                margin-left: 30px;
+                width: 265px;
+                height: 90px;
+                & :not(:last-child) {
+                    margin-bottom: 10px;
+                }
+                & .randomchar-title {
+                    line-height: 26px;
+                    font-size: 22px;
+                    font-weight: 700;
+                }
+
+                & .randomchar-descr {
+                    line-height: 16px;
+                    font-size: 14px;
+                    font-weight: 400;
+
+                }
+
+                & .randomchar-btns {
+                    display: flex;
+                    & :not(:last-child) {
+                        margin-right: 48px;
+                    }
+                }
+            }
+        }
+
+        & .randomchar-try {
+            background: $dark;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            & :not(:last-child) {
+                margin-bottom: 13px;
+            }
+            & .randomchar-try__titles {
+                color: #fff;
+                font-size: 24px;
+                max-width: 374px;
+                font-weight: 700;
+                line-height: 28px;
+                & :not(:last-child) {
+                    margin-bottom: 33px;
+                }
+            }
+            & .button {
+                max-width: 101px;
+            }       
+            
+            & img {
+                position: absolute;
+                left: 383px;
+
+            }
+        }
+    }
+}

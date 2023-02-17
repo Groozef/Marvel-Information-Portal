@@ -1,0 +1,53 @@
+@import '../../style/variables.scss';
+
+.char__content {
+    display: flex;
+    margin-top: 50px;
+    .char__list {
+        max-width: 650px;
+        & .char__flex {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            column-gap: 25px;
+            row-gap: 30px;
+            & .char__item {
+                background: $dark;
+                min-height: 318px;
+                box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
+                width: 200px;
+                height: 318px;
+                cursor: pointer;
+                & img {
+                    width: 200px;
+                    height: 200px;
+                }
+                & .char__name {
+                    max-width: 170px;
+                    margin: 15px 15px 0 15px;
+                    font-size: 22px;
+                    line-height: 29px;
+                    font-weight: 700;
+                    color: #fff;
+                }
+            }
+    
+            & .char__item:hover {
+                box-shadow: 0 5px 20px $main-color;
+                transform: translateY(-8px);
+                transition: .3s;
+            }
+    
+            & .char__item_selected {
+                box-shadow: 0 5px 20px $main-color;
+                transform: translateY(-8px);
+            }
+        }
+    
+        & .char__btn_wrapper {
+            display: flex;
+            justify-content: center;
+        } 
+    }
+
+
+}
