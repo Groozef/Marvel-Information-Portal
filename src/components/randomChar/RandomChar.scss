@@ -17,6 +17,7 @@ img {
                 max-width: 180px;
                 max-height: 180px;
                 border: 1px solid greenyellow;
+                object-fit: contain;
             }
 
             & .randomchar-content { 
