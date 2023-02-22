@@ -15,18 +15,25 @@ class RandomChar extends Component {
 
     componentDidMount() {
         this.updateRandomChar();
-        this.timerID = setInterval(this.updateRandomChar, 3000);
+        // this.timerID = setInterval(this.updateRandomChar, 3000);
     }
 
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
+    // componentWillUnmount() {
+        // clearInterval(this.timerID);
+    // }
 
     onCharLoaded = () => {
         this.setState({
             loading: false,
             error: false,
         });
+    };
+
+    onCharLoading = () => {
+        this.setState({
+            loading: true,
+            error: false,
+        })
     };
 
     onError = () => {
@@ -39,23 +46,14 @@ class RandomChar extends Component {
     updateRandomChar = () => {
         const randomID = Math.floor(Math.random() * (1011400 - 1011000) + 1011000),
               marvelService = new MarvelService();
-
+        
+        this.onCharLoading();
         marvelService.getChar(randomID)
             .then(res => {
-                const char = res.data.results[0];
                 this.onCharLoaded();
-                this.setState(() => {
-                    return {
-                        char: {
-                            name: char.name,
-                            description: char.description,
-                            thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,
-                            homepageURL: char.urls[0].url,
-                            wikiURL: char.urls[1].url,
-                        }
-                    }
-                    
-                });
+                this.setState({
+                    char: res,
+                })
             })
             .catch(this.onError);
     };
@@ -63,7 +61,7 @@ class RandomChar extends Component {
     render() {
         const {char, loading, error} = this.state;
         const errorMessage = error ? <ErrorMessage /> : null,
-              loadingCheck = loading ? <Spinner /> : null,
+              soinnerLoading = loading ? <Spinner /> : null,
               content = !(error || loading) ? <CharContent char={{char}}/> : null;
 
         return (
@@ -71,7 +69,7 @@ class RandomChar extends Component {
                 <div className="randomchar-items">
                     <div className="randomchar-item">
                         {errorMessage}
-                        {loadingCheck}
+                        {soinnerLoading}
                         {content}
                     </div>
                     <div className="randomchar-item randomchar-try">

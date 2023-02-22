@@ -18,7 +18,7 @@ const App = () => {
                         </div>
                     </main>
 
-                    <img className="bg-decoration" src={bgDecoration} alt="vision" />
+                    {/* <img className="bg-decoration" src={bgDecoration} alt="vision" /> */}
                 </div>
             </div>
         </div>

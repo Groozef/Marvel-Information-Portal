@@ -3,13 +3,15 @@ import errorMessage from './error.gif';
 
 const ErrorMessage = () => {
     return (
-        <img 
-            src={errorMessage} alt="ERROR" 
-            style={{
-                display: 'block',
-                margin: '0 auto'
-            }}
-        />
+        <div className="error-container">
+            <img 
+                src={errorMessage} alt="ERROR" 
+                style={{
+                    display: 'block',
+                    margin: '0 auto'
+                }}
+            />
+        </div>
     );
 }
 
