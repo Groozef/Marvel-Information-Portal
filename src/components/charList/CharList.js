@@ -83,7 +83,7 @@ const CharItem = ({char}) => {
     
     return charList.map(item => {
         return (
-            <li className="char__item">
+            <li className="char__item" id={item.id}>
                 <img src={item.thumbnail} alt="aabys" />
                 <div className="char__name">{item.name}</div>
             </li>
