@@ -1,6 +1,14 @@
-.app__wrapper {
+.app {
     position: relative;
 }
+.app__wrapper {
+    width: 1150px;
+}
+
+main {
+    margin: 15px;
+}
+
 .bg-decoration {
     position: absolute;
     right: 0;

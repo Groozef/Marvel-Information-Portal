@@ -87,6 +87,10 @@
     &.button__secondary::before, &.button__secondary::after {
         background-color: $grey;
     }
+    &:disabled {
+        filter: grayscale(.5);
+        transition: .5s;
+    }
     &:hover {
         transform: translateY(-5px);
     }

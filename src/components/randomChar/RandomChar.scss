@@ -13,6 +13,12 @@ img {
             box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
             height: 250px;
             display: flex;  
+            & .spinner-container {
+                margin: 0 auto;
+            }
+            & .error-container {
+                margin: 0 auto;
+            }
             & .randomchar-img {
                 max-width: 180px;
                 max-height: 180px;

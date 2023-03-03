@@ -13,6 +13,9 @@ class RandomChar extends Component {
         error: false,
     };
 
+    marvelService = new MarvelService();
+
+
     componentDidMount() {
         this.updateRandomChar();
         // this.timerID = setInterval(this.updateRandomChar, 3000);
@@ -44,12 +47,11 @@ class RandomChar extends Component {
     };
 
     updateRandomChar = () => {
-        const randomID = Math.floor(Math.random() * (1011400 - 1011000) + 1011000),
-              marvelService = new MarvelService();
-        
+        const randomID = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);        
         this.onCharLoading();
-        marvelService.getChar(randomID)
+        this.marvelService.getChar(randomID)
             .then(res => {
+                console.log('Рандомный персонаж')
                 this.onCharLoaded();
                 this.setState({
                     char: res,
@@ -61,7 +63,7 @@ class RandomChar extends Component {
     render() {
         const {char, loading, error} = this.state;
         const errorMessage = error ? <ErrorMessage /> : null,
-              soinnerLoading = loading ? <Spinner /> : null,
+              spinnerLoading = loading ? <Spinner /> : null,
               content = !(error || loading) ? <CharContent char={{char}}/> : null;
 
         return (
@@ -69,7 +71,7 @@ class RandomChar extends Component {
                 <div className="randomchar-items">
                     <div className="randomchar-item">
                         {errorMessage}
-                        {soinnerLoading}
+                        {spinnerLoading}
                         {content}
                     </div>
                     <div className="randomchar-item randomchar-try">
