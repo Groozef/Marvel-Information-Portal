@@ -1,0 +1,36 @@
+@import '../../style/variables.scss';
+
+.baner__wrapper {
+    background: $dark;
+    height: 100px;
+    width: 1100px;
+    margin-bottom: 45px;
+    & .banner__flex-container {
+        display: flex;
+        align-items: center;
+
+        & .baner__avengers-image {
+            margin-left: 45px;
+            & img {
+                width: 152px;
+                height: 100px;
+            }
+        }
+
+        & .baner__description {
+            font-size: 24px;
+            color: #fff;
+            font-weight: 700;
+
+            margin-left: 83px; 
+        }
+
+        & .baner__avengers-logo {
+            margin: 0 25px 0 427px ;
+            & img {
+                width: 133px;
+                height: 100px;
+            }
+        }
+    }
+}

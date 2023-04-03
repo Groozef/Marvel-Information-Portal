@@ -1,104 +1,73 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 
 import './RandomChar.scss';
 import mjolnirIMG from '../../resources/img/mjolnir.png';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-class RandomChar extends Component {
-    state = {
-        char: {},
-        loading: true,
-        error: false,
-    };
+const RandomChar = () => {
+    // states
 
-    marvelService = new MarvelService();
+    const [char, setChar] = useState({});
+
+    const {getChar, loading, error, clearError} =  useMarvelService();
+
+    useEffect(() => {
+        updateRandomChar();
+    }, []);
 
 
-    componentDidMount() {
-        this.updateRandomChar();
-        // this.timerID = setInterval(this.updateRandomChar, 3000);
-    }
-
-    // componentWillUnmount() {
-        // clearInterval(this.timerID);
-    // }
-
-    onCharLoaded = () => {
-        this.setState({
-            loading: false,
-            error: false,
-        });
-    };
-
-    onCharLoading = () => {
-        this.setState({
-            loading: true,
-            error: false,
-        })
-    };
-
-    onError = () => {
-        this.setState({
-            loading: false,
-            error: true,
-        })
-    };
-
-    updateRandomChar = () => {
-        const randomID = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);        
-        this.onCharLoading();
-        this.marvelService.getChar(randomID)
+    // Getting a character by id using methods of an instance of the marvelService class
+    const updateRandomChar = () => {
+        clearError();
+        const randomID = Math.floor(Math.random() * (1011400 - 1011000) + 1011000); // random range
+        getChar(randomID) 
             .then(res => {
-                console.log('Рандомный персонаж')
-                this.onCharLoaded();
-                this.setState({
-                    char: res,
-                })
+                console.log('random char');
+                setChar(res);
             })
-            .catch(this.onError);
     };
 
-    render() {
-        const {char, loading, error} = this.state;
-        const errorMessage = error ? <ErrorMessage /> : null,
-              spinnerLoading = loading ? <Spinner /> : null,
-              content = !(error || loading) ? <CharContent char={{char}}/> : null;
+    // content processing
+    const errorMessage = error ? <ErrorMessage /> : null,
+          spinnerLoading = loading ? <Spinner /> : null,
+          content = !(error || loading) ? <CharContent char={{ char }} /> : null;
 
-        return (
-            <div className="randomchar">
-                <div className="randomchar-items">
-                    <div className="randomchar-item">
-                        {errorMessage}
-                        {spinnerLoading}
-                        {content}
-                    </div>
-                    <div className="randomchar-item randomchar-try">
-                        <div className="randomchar-try__titles">
-                            <div className="randomchar-try__title">
-                                Random character for today!<br />
-                                Do you want to get to know him better?
-                            </div>
-                            <div className="randomchar-try__title">
-                                Or choose another one
-                            </div>
+    return (
+        <div className="randomchar">
+            <div className="randomchar-items">
+                <div className="randomchar-item">
+                    {errorMessage}
+                    {spinnerLoading}
+                    {content}
+                </div>
+                <div className="randomchar-item randomchar-try">
+                    <div className="randomchar-try__titles">
+                        <div className="randomchar-try__title">
+                            Random character for today!<br />
+                            Do you want to get to know him better?
                         </div>
-
-                        <div href="#" className="button button__main" onClick={this.updateRandomChar}>
-                            <div className="inner">Try it</div>
+                        <div className="randomchar-try__title">
+                            Or choose another one
                         </div>
-
-                        <img src={mjolnirIMG} alt="mjolnir" />
                     </div>
+
+                    <div href="#" className="button button__main" onClick={updateRandomChar}>
+                        <div className="inner">Try it</div>
+                    </div>
+
+                    <img src={mjolnirIMG} alt="mjolnir" />
                 </div>
             </div>
-        );
-    }
+        </div>
+    )
 };
 
-const CharContent = ({char}) => {
-    const {char: {name, description, thumbnail, homepageURL, wikiURL}} = char;
+
+
+const CharContent = ({ char }) => {
+    const { char: { name, description, thumbnail, homepageURL, wikiURL } } = char;
 
     return (
         <>
@@ -126,8 +95,5 @@ const CharContent = ({char}) => {
         </>
     )
 };
-
-
-
 
 export default RandomChar;

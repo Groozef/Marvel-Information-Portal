@@ -1,0 +1,52 @@
+@import '../../../style//style.scss';
+.comic {
+    & .comic-wrapper {
+        display: flex;
+        & .comic__main-content {
+            width: 100%;
+            display: flex;
+
+            & .comic-img {
+                & img {
+                    width: 293px;
+                    height: 450px;
+                }
+            }
+
+            & .comic__sub-content {
+                margin-left: 50px;
+                max-width: 550px;
+
+                & :not(:last-child) {
+                    margin: 0 0 25px 0;
+                }
+
+                & .comic-title {
+                    font-weight: 700;
+                    font-size: 22px;
+                    line-height: 26px;
+                }
+
+                & .comic-description,
+                .comic-pages,
+                .comic-language {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 21px;
+                }
+
+                & .comic-price {
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 28px;
+                    color: $main-color;
+                }
+            }
+        }
+        & .comic-back___nav {
+            width: 100px;
+            height: 24px;
+            margin-right: 10px;
+        }
+    }
+}

@@ -3,7 +3,7 @@ import errorMessage from './error.gif';
 
 const ErrorMessage = () => {
     return (
-        <div className="error-container" style={{width: '100%'}}>
+        <div className="error-container">
             <img 
                 src={errorMessage} alt="ERROR" 
                 style={{

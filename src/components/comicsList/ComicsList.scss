@@ -1,0 +1,61 @@
+.comics {
+    & .comics__wrapper {
+        & .comics__list {
+            & .comics__grid {
+                display: grid;
+                grid-template-columns: repeat(4, 225px);
+                column-gap: 67px;
+                row-gap: 73px;
+                & .spinner-container {
+                    width: 1100px;
+                    z-index: 10;
+                    & svg {
+                        margin: 0 auto;
+                    }
+                }
+
+                & .error-container {
+                    width: 1100px;
+                    z-index: 10;
+                    & img {
+                        margin: 0 auto;
+                    }
+                }
+
+                
+                & .comics__list-item {
+                    width: 225px;
+                    height: 415px;
+                    cursor: pointer;
+                    & :hover {
+                        transform: translateY(-8px);
+                        transition: .3s;
+                    }
+                    & .comics__image {
+                        filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25));
+                        & img {
+                            width: 225px;
+                            height: 346px;
+                        }
+                    }
+
+                    & .comics__name {
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 16px;
+                        margin-top: 10px;
+                    }
+
+                    & .comics__price {
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 16px;
+                        color: rgba(0, 0, 0, 0.6);
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+
+    }
+}
