@@ -47,6 +47,12 @@
             width: 100px;
             height: 24px;
             margin-right: 10px;
+            & .comic-back__link {
+                &:hover {
+                    color: $main-color;
+                    transition: .3s;
+                }
+            }
         }
     }
 }

@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types'; // Test
 import './CharInfo.scss';
+
 import useMarvelService from '../../services/MarvelService';
+
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Skeleton from '../skeleton/Skeleton';
+
+import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const CharInfo = (props) => {
     // states:
     const [char, setChar] = useState();
 
-    const {loading, error, getChar, clearError} = useMarvelService();
-
-
+    const { loading, error, getChar, clearError } = useMarvelService();
     const updateChar = () => {
         clearError();
-        const {charID} = props;
+        const { charID } = props;
         getChar(charID)
             .then(char => {
                 setChar(char);
@@ -25,6 +27,8 @@ const CharInfo = (props) => {
         // props.charID = 1010338;
         updateChar();
     }, [props.charID]);
+
+
 
     // Content processing
     const errorMessage = error ? <ErrorMessage /> : null,
@@ -42,22 +46,15 @@ const CharInfo = (props) => {
 
 
 const View = ({ char }) => {
-    const { thumbnail, name, homepageURL, wikiURL, description,  comics} = char;
-
-    const [comicID, setComicID] = useState(null);
-
+    const { thumbnail, name, homepageURL, wikiURL, description, comics } = char;
     const getComicID = (resource) => {
-        for(let i = resource.length; i > 0; i--) {
-            if(resource[i] === '/') {
+        for (let i = resource.length; i > 0; i--) {
+            if (resource[i] === '/') {
                 const id = resource.slice(i + 1);
-                setComicID(id);
-                return;
+                return id;
             }
         }
     };
-
-
-
 
     return (
         <div className="charinfo__wrapper">
@@ -93,13 +90,20 @@ const View = ({ char }) => {
                     {comics.length > 0 ? null : 'This character was not in the comics'}
                     {
                         comics.map((item, i) => {
-                            return <li 
-                                        className="comics-item" 
-                                        key={i}
-                                        onClick={(e) => {
-                                            getComicID(item.resourceURI);
-                                        }}
-                                    >{item.name}</li>
+                            return (
+                                <li
+                                    className="comics-item"
+                                    key={i}
+                                    id={getComicID(item.resourceURI)}
+                                >
+                                    <NavLink
+                                        to={`/comics/${getComicID(item.resourceURI)}`}
+                                    >
+                                    {item.name}
+                                    </NavLink>
+                                </li>
+
+                            )
                         })
                     }
                 </ul>

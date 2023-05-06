@@ -7,7 +7,10 @@ import CharInfo from '../../charInfo/CharInfo';
 
 
 const MainPage = () => {
-    const [selectedChar, setChar] = useState(1010338)
+    const [selectedChar, setChar] = useState(1010338),
+          [comicID, setComicID] = useState();
+
+
 
     const onSelectedChar = (id) => {
         if (selectedChar === id) { // so that the state is not updated when you click on the same character again
@@ -24,7 +27,7 @@ const MainPage = () => {
             </ErrorBoundary>
             <div className="char__content">
                 <ErrorBoundary >
-                    <CharList onSelectedChar={onSelectedChar} charID={selectedChar} />
+                    <CharList onSelectedChar={onSelectedChar} charID={selectedChar}/>
                 </ErrorBoundary>
 
                 <ErrorBoundary >

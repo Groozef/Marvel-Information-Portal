@@ -1,4 +1,4 @@
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import useMarvelService from '../../../services/MarvelService';
@@ -34,6 +34,9 @@ const SingleComicPage = () => {
     const errorMessage = error ? <ErrorMessage /> : null,
           content = !(error && loading && !comic) ? <View comic={comic}/> : null;
 
+    const navigate = useNavigate(),
+          goBack = () => navigate(-1);
+
     return (
         <div className="comic">
             <AppBaner />
@@ -42,6 +45,11 @@ const SingleComicPage = () => {
                 {content}
                 <div className="comic-back___nav">
                     <NavLink to="/comics" className="comic-back__link" style={{fontWeight: 700, fontSize: 18, lineHeight: '21px'}}>Back to all</NavLink>
+                    <div 
+                        className="comic-back__link" 
+                        style={{fontWeight: 700, fontSize: 18, lineHeight: '21px', marginTop: 10, cursor: 'pointer'}}
+                        onClick={goBack}
+                    >Go back</div>
                 </div>
             </div>
         </div>

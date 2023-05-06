@@ -28,6 +28,9 @@ const CharList = (props) => {
     }, []);
 
     const onLoadedCharList = (newCharList) => {
+
+
+
         let ended = false;
         if(newCharList.length >= offset) ended = true;
         setCharList(charList => {
